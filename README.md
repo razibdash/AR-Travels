@@ -53,4 +53,4 @@ This project is licensed under the MIT License.
 ## Contact
 
 📧 Email: avrorazib@gmail.com  
-📱 Follow us on [Linkedln](https://linkedln.com/razibdash) | [Facebook](https://facebook.com/avronilrajib)
+📱 Follow us on [Linkedln](https://www.linkedin.com/in/razibdash/) | [Facebook](https://www.facebook.com/avronilrajib)
