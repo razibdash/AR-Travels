@@ -50,7 +50,7 @@ Example:
 }
 ```
 
-# Client Error (400)
+### Client Error (400)
 
 Description: Bad request. This can occur if any required fields are missing or invalid, or if the email already exists.
 
@@ -63,7 +63,7 @@ example:
 }
 ```
 
-# Validation
+### Validation
 
 The following validations are applied to the request body:
 
@@ -77,13 +77,13 @@ The following validations are applied to the request body:
 
 ## Endpoint: `/users/login`
 
-## Method: POST
+### Method: POST
 
-## Description
+### Description
 
 This endpoint is used to log in an existing user. It requires the user's email and password.
 
-# Request Body
+### Request Body
 
 The request body should be a JSON object with the following fields:
 
@@ -91,7 +91,7 @@ The request body should be a JSON object with the following fields:
  <li>email: The user's email address (required, must be a valid email).</li>
  <li>password: The user's password (required, minimum 6 characters).</li>
 </ul>
-# Example:
+ Example:
 
 ```json
 {
@@ -100,7 +100,7 @@ The request body should be a JSON object with the following fields:
 }
 ```
 
-# Responses
+### Responses
 
 Body: A JSON object containing the user details and a JWT token. Example:
 
@@ -115,5 +115,54 @@ Body: A JSON object containing the user details and a JWT token. Example:
     "email": "john.doe@example.com"
   },
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+# User Profile Endpoint Documentation
+
+## Endpoint: `/users/profile`
+
+### Method: GET
+
+### Description
+
+This endpoint is used to fetch the profile of the logged-in user. It requires the user to be authenticated.
+
+### Responses
+
+Body: A JSON object containing the user details. Example:
+
+```json
+{
+  "success": true,
+  "message": "User profile fetched successfully",
+  "user": {
+    "_id": "60d0fe4f5311236168a109ca",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+```
+
+# User Logout Endpoint Documentation
+
+## Endpoint: `/users/logout`
+
+### Method: GET
+
+### Description
+
+This endpoint is used to log out the user. It requires the user to be authenticated.
+
+### Responses
+
+Body: A JSON object containing a success message. Example:
+
+```json
+{
+  "message": "User logged out successfully"
 }
 ```

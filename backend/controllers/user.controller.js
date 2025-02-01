@@ -1,6 +1,8 @@
 const userServices = require('../services/user.service');
 const userModel = require('../models/user.model');
 const { hashedPwd, checkPwd } = require('../db/utilits');
+const blacklistTokenSchema=require('../models/blacklistToken.model');
+
 const registerUser = async (req, res) => {  
     try {
          const {fullname,email,password} = req.body;
@@ -36,7 +38,7 @@ const loginUser = async (req, res) => {
         }   
         if(user){
             const token =await checkPwd(password, user.password, { id: user._id });
-        
+            res.cookie('token',token);
             if(token===false){
                 res.status(401).json({message:'Invalid login credentials'});
             }
@@ -53,4 +55,25 @@ const loginUser = async (req, res) => {
             res.status(401).json({ error: error.message });
         }
 }
-module.exports = { registerUser ,loginUser};
+
+const userProfile=async(req,res)=>{
+    try {
+        res.status(200).json({
+            success:true,
+            message:'User profile fetched successfully',
+            user:req.user,
+        });
+    } catch (error) {
+        res.status(401).json({ error: error.message });
+    }
+}
+
+const logoutUser=async(req,res)=>{
+    res.clearCookie('token');
+    const token=req.cookies.token||req.headers.authorization.split(' ')[1];
+    const blacklistToken=await blacklistTokenSchema.create({token});
+    res.status(200).json({message:'User logged out successfully'});
+
+
+}
+module.exports = { registerUser ,loginUser,userProfile,logoutUser};
