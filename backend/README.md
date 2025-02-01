@@ -73,7 +73,7 @@ The following validations are applied to the request body:
   <li>password: Must be at least 6 characters long.</li>
 </ul>
 
-### User Login Endpoint Documentation
+# User Login Endpoint Documentation
 
 ## Endpoint: /users/login
 
