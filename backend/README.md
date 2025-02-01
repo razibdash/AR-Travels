@@ -75,7 +75,7 @@ The following validations are applied to the request body:
 
 # User Login Endpoint Documentation
 
-## Endpoint: /users/login
+## Endpoint: `/users/login`
 
 ## Method: POST
 
