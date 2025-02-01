@@ -10,4 +10,12 @@ const registrationValidator=[
     check("password").isLength({min:6}).withMessage("password is missing"),
 ]
 
-module.exports={registrationValidator};
+const loginValidator=[
+    check("email")
+    .notEmpty()
+    .withMessage("email is missing")
+    .isEmail()
+    .withMessage("not a valid email!"),
+    check("password").isLength({min:6}).withMessage("password is missing"),
+]
+module.exports={registrationValidator,loginValidator};

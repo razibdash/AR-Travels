@@ -1,9 +1,10 @@
 const userServices = require('../services/user.service');
 const userModel = require('../models/user.model');
+const { hashedPwd, checkPwd } = require('../db/utilits');
 const registerUser = async (req, res) => {  
     try {
          const {fullname,email,password} = req.body;
-         const hashedPassword = await userModel.hashPassword(password);
+         const hashedPassword = await hashedPwd(password);
          const user = await userServices.createUser(
             {
                 firstname:fullname.firstname,
@@ -12,12 +13,44 @@ const registerUser = async (req, res) => {
                 password:hashedPassword
             }
         );   
-        console.log(user);
-         const token=await userModel.generateAuthToken();
-         res.status(201).json({ user, token });
+         res.status(201).json({
+            sucess:true,
+            message:'User created successfully',
+            user,
+         });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 }
 
-module.exports = { registerUser };
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            res.status(400).json({message:'All fields are required'});
+        }
+        const user = await userModel.findOne({email: email }).select('+password');  
+        
+        if (!user) {
+            res.status(401).json({message:'Invalid login credentials'});
+        }   
+        if(user){
+            const token =await checkPwd(password, user.password, { id: user._id });
+        
+            if(token===false){
+                res.status(401).json({message:'Invalid login credentials'});
+            }
+            if(token){
+            res.status(200).json({
+                success:true,
+                message:'User logged in successfully',
+                user,
+                token,
+             });
+            }
+        }
+    }catch (error) {
+            res.status(401).json({ error: error.message });
+        }
+}
+module.exports = { registerUser ,loginUser};

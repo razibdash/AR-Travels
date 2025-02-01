@@ -72,3 +72,48 @@ The following validations are applied to the request body:
   <li>fullname.firstname: Must be at least 3 characters long.</li>
   <li>password: Must be at least 6 characters long.</li>
 </ul>
+
+### User Login Endpoint Documentation
+
+## Endpoint: /users/login
+
+## Method: POST
+
+## Description
+
+This endpoint is used to log in an existing user. It requires the user's email and password.
+
+# Request Body
+
+The request body should be a JSON object with the following fields:
+
+<ul>
+ <li>email: The user's email address (required, must be a valid email).</li>
+ <li>password: The user's password (required, minimum 6 characters).</li>
+</ul>
+# Example:
+
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+# Responses
+
+Body: A JSON object containing the user details and a JWT token. Example:
+
+```json
+{
+  "user": {
+    "_id": "60d0fe4f5311236168a109ca",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
