@@ -67,6 +67,8 @@ example:
 
 The following validations are applied to the request body:
 
-email: Must not be empty and must be a valid email.
-fullname.firstname: Must be at least 3 characters long.
-password: Must be at least 6 characters long.
+<ul>
+  <li>email: Must not be empty and must be a valid email.</li>
+  <li>fullname.firstname: Must be at least 3 characters long.</li>
+  <li>password: Must be at least 6 characters long.</li>
+</ul>
