@@ -10,8 +10,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 const userRoutes=require('./routes/user.routes');
+const captainRouter=require('./routes/captain.routes');
 app.use(cookieParser());
 app.use('/users',userRoutes); // Add the users route to the app
+app.use('/captains',captainRouter); // Add the captains route to the app
 
 app.use((req,res,next)=>{
     const error=new Error('Not found');

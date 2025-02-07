@@ -168,3 +168,79 @@ Body: A JSON object containing a success message. Example:
   "message": "User logged out successfully"
 }
 ```
+
+# Captain Registration Endpoint Documentation
+
+## Endpoint: `/captains/register`
+
+### Method: POST
+
+### Description
+
+This endpoint is used to register a new captain. It requires the captain's first name, last name, email, password, and vehicle details.
+
+### Request Body
+
+The request body should be a JSON object with the following fields:
+
+- `fullname`: An object containing:
+  - `firstname`: The captain's first name (required, minimum 3 characters).
+  - `lastname`: The captain's last name (optional).
+- `email`: The captain's email address (required, must be a valid email).
+- `password`: The captain's password (required, minimum 6 characters).
+- `vehicle`: An object containing:
+  - `color`: The vehicle's color (required, minimum 3 characters).
+  - `plate`: The vehicle's plate number (required, minimum 3 characters).
+  - `capacity`: The vehicle's capacity (required, must be a valid number).
+  - `vehicleType`: The type of vehicle (required, must be one of `car`, `motorcycle`, or `auto`).
+
+Example:
+
+```json
+{
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "password": "password123",
+  "vehicle": {
+    "color": "Red",
+    "plate": "ABC123",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+```
+
+## Responses
+
+### Success (201)
+
+<ul>
+ <li>Description: Captain registered successfully.</li>
+ <li>Body: A JSON object containing the captain details.</li>
+</ul>
+
+### Example:
+
+```json
+{
+  "success": true,
+  "message": "Captain created successfully",
+  "captain": {
+    "_id": "60d0fe4f5311236168a109ca",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
