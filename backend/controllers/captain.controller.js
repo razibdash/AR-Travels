@@ -1,4 +1,4 @@
-const { hashedPwd } = require('../db/utilits');
+const { hashedPwd, checkPwd } = require('../db/utilits');
 const {createCaptain} = require('../services/captain.service.js');  
 const captainModel = require('../models/captain.model');
 
@@ -35,4 +35,33 @@ const registerCaptain = async (req, res) => {
     }
 }
 
-module.exports = { registerCaptain }
+const loginCaptain = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const captain = await captainModel.findOne({ email }).select('+password'); 
+        if (!captain) {
+            return res.status(400).json({
+                success: false,
+                message: 'Captain not found',
+            });
+        }
+        if(captain){
+            const token =await checkPwd(password, captain.password, { id: captain._id });
+            res.cookie('token',token);
+            if(token===false){
+                res.status(401).json({message:'authentication failed'});
+            }
+            if(token){
+            res.status(200).json({
+                success:true,
+                message:'Captain logged in successfully',
+                captain,
+                token,
+             });
+            }
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+module.exports = { registerCaptain ,loginCaptain};

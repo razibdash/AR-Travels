@@ -244,3 +244,62 @@ Example:
   }
 }
 ```
+
+# Captain Login Endpoint Documentation
+
+## Endpoint: `/captains/login`
+
+### Method: POST
+
+### Description
+
+This endpoint is used to log in an existing captain. It requires the captain's email and password.
+
+### Request Body
+
+The request body should be a JSON object with the following fields:
+
+- `email`: The captain's email address (required, must be a valid email).
+- `password`: The captain's password (required, minimum 6 characters).
+
+Example:
+
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+## Responses
+
+### Success (200)
+
+<ul>
+<li>Description: Captain logged in successfully.</li>
+<li>Body: A JSON object containing the captain details and a JWT token.</li>
+</ul>
+
+### Example:
+
+```json
+{
+  "success": true,
+  "message": "Captain logged in successfully",
+  "captain": {
+    "_id": "60d0fe4f5311236168a109ca",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
