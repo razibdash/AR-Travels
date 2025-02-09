@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended:true}));
 const userRoutes=require('./routes/user.routes');
 const captainRouter=require('./routes/captain.routes');
 app.use(cookieParser());
+
 app.use('/users',userRoutes); // Add the users route to the app
 app.use('/captains',captainRouter); // Add the captains route to the app
 
@@ -20,6 +21,7 @@ app.use((req,res,next)=>{
     error.status=404;
     next(error);
 }); 
+
 app.use((error,req,res,next)=>{
     res.status(error.status || 500);
     res.json({

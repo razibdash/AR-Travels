@@ -7,7 +7,7 @@ const registerCaptain = async (req, res) => {
         const { fullname, email, password,vehicle } = req.body;
         const isCaptainAlreadyExist = await captainModel.findOne({email});
         if (isCaptainAlreadyExist) {
-            return res.status(400).json({
+              res.status(400).json({
                 success: false,
                 message: 'Captain already exists',
             });
@@ -40,7 +40,7 @@ const loginCaptain = async (req, res) => {
         const { email, password } = req.body;
         const captain = await captainModel.findOne({ email }).select('+password'); 
         if (!captain) {
-            return res.status(400).json({
+              res.status(400).json({
                 success: false,
                 message: 'Captain not found',
             });
