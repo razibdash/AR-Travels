@@ -1,13 +1,21 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Home from "./pages/Home";
+import UserLogin from "./pages/UserLogin";
+import UserSignup from "./pages/UserSignup";
+import CaptainLogin from "./pages/CaptainLogin";
+import CaptainSignup from "./pages/CaptainSignup";
 
 function App() {
   return (
     <>
-      <div>
-        <h1 className="text-3xl bg-amber-700 text-center py-1.5 text-sky-50">
-          Hello AB Travels
-        </h1>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/user-login" element={<UserLogin />} />
+        <Route path="/user-signup" element={<UserSignup />} />
+        <Route path="/captain-login" element={<CaptainLogin />} />
+        <Route path="/captain-signup" element={<CaptainSignup />} />
+      </Routes>
     </>
   );
 }

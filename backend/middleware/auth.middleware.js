@@ -21,7 +21,7 @@ const authUser=async(req,res,next)=>{
         res.status(401).json({message:error});
     }
 }
-//
+
 const authCaptain=async(req,res,next)=>{
     const token=req.cookies.token || req.headers.authorization?.split(' ')[1]; 
     try {
@@ -36,6 +36,7 @@ const authCaptain=async(req,res,next)=>{
         const captain=await captainModel.findById(decoded.id);
         req.captain=captain;
         next();
+
     } catch (error) {
         res.status(401).json({message:error.message});
     }

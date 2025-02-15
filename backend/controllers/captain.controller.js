@@ -1,7 +1,8 @@
 const { hashedPwd, checkPwd } = require('../db/utilits');
 const {createCaptain} = require('../services/captain.service.js');  
 const captainModel = require('../models/captain.model');
-
+const blacklistTokenSchema=require('../models/blacklistToken.model');
+//register captain controller 
 const registerCaptain = async (req, res) => {  
     try {
         const { fullname, email, password,vehicle } = req.body;
@@ -35,6 +36,7 @@ const registerCaptain = async (req, res) => {
     }
 }
 
+//login captain controller
 const loginCaptain = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -64,4 +66,35 @@ const loginCaptain = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
-module.exports = { registerCaptain ,loginCaptain};
+
+//profile captain controller
+const profileCaptain = async (req, res) => {
+    try {
+        res.status(200).json({
+            success:true,
+            message:'Captain profile fetched successfully',
+            captain:req.captain,
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+//logout captain controller
+const logoutCaptain = async (req, res) => {
+    try {
+    const token=req.cookies.token||req.headers.authorization?.split(' ')[1];
+    // console.log(token);
+    const blacklistToken=await blacklistTokenSchema.create({token});
+    if(blacklistToken){
+        req.clearCookie('token');
+        res.status(200).json({
+            success:true,
+            message:'Captain logged out successfully',
+        });
+    }
+    
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+module.exports = { registerCaptain ,loginCaptain,profileCaptain,logoutCaptain}; 
