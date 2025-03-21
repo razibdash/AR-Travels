@@ -9,7 +9,7 @@ function Home() {
         </div>
         <div className="bg-stone-50 py-5 px-10 sm:w-1/2 w-full mx-auto">
           <h1 className="font-bold text-stone-700 p-1 text-2xl">
-            Get start with AR Travels
+            Get start With AR Travels
           </h1>
           <Link
             to="/user-login"
