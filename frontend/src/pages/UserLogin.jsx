@@ -1,17 +1,35 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function UserLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userData, setuserData] = useState({});
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
-    setuserData({
-      email,
-      password,
-    });
+    console.log(formData);
+    axios
+      .post("http://localhost:4000/users/login", formData)
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        // window.location.href = "/user-dashboard";
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -29,8 +47,9 @@ function UserLogin() {
             <input
               type="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               required
               className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
             />
@@ -45,8 +64,9 @@ function UserLogin() {
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               required
               className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
             />

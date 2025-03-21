@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function UserSignup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: {
       firstname: "",
@@ -31,8 +33,16 @@ function UserSignup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     // Here you would typically send the form data to your backend
+    axios
+      .post("http://localhost:4000/users/register", formData)
+      .then((res) => {
+        navigate("/user-login");
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
