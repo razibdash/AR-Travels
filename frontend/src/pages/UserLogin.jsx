@@ -36,7 +36,7 @@ function UserLogin() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
         <img src="../img/logo.png" alt="" />
-        <h2 className="text-2xl font-bold text-center">Login</h2>
+        <h2 className="text-2xl font-bold text-center">User Login</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label
@@ -76,7 +76,7 @@ function UserLogin() {
             type="submit"
             className="w-full px-4 py-2 font-bold text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-200"
           >
-            User Login
+            Login
           </button>
           <div className="py-5 flex justify-center items-center">
             <p className="text-stone-800">haven't account ?</p>{" "}
