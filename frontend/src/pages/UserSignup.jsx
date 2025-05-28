@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 function UserSignup() {
+  // Importing necessary libraries and hooks
+  // Importing useState for state management, Link for navigation, axios for HTTP requests, useNavigate for programmatic navigation, and toast for notifications
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: {
@@ -13,6 +15,8 @@ function UserSignup() {
     email: "",
     password: "",
   });
+  // Initializing formData state with an object containing fullname, email, and password fields
+  // fullname is an object with firstname and lastname properties
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name.includes(".")) {
@@ -32,17 +36,23 @@ function UserSignup() {
     }
   };
 
+  // handleChange function updates the formData state based on user input
+  // It checks if the input name contains a dot (.) to handle nested objects like fullname.firstname and fullname.lastname
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
     axios
       .post("http://localhost:4000/users/register", formData)
       .then((res) => {
-navigate("/user-login");
-console.log(res.data);
-toast.success("Registration successful! Please login.");
+        navigate("/user-login");
+        console.log(res.data);
+        toast.success("Registration successful! Please login.");
+      })
+      .catch(() => {
+        toast.error("Oops! Something went wrong. Please try again.");
+      });
   };
-
+  // handleSubmit function prevents the default form submission behavior
+  // It sends a POST request to the server with the formData
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form onSubmit={handleSubmit} className="p-6 bg-white rounded shadow-md">
@@ -104,6 +114,7 @@ toast.success("Registration successful! Please login.");
         >
           Register
         </button>
+
         <div className="py-5 flex justify-center items-center">
           <p className="text-stone-800">have account ?</p>{" "}
           <Link className="text-sky-600 ml-1" to={"/user-login"}>
@@ -114,5 +125,6 @@ toast.success("Registration successful! Please login.");
     </div>
   );
 }
+// UserSignup component allows users to register by providing their first name, last name, email, and password
 
 export default UserSignup;

@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function UserLogin() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,7 +31,7 @@ function UserLogin() {
         localStorage.setItem("user", JSON.stringify(res.data.user));
         // window.location.href = "/user-dashboard";
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Invalid user email or password");
       });
   };
