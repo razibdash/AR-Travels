@@ -5,10 +5,12 @@ import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
 import CaptainLogin from "./pages/CaptainLogin";
 import CaptainSignup from "./pages/CaptainSignup";
+ import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <>
+    <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user-login" element={<UserLogin/>} />

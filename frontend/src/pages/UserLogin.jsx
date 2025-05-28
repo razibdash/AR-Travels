@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 function UserLogin() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -23,13 +25,14 @@ function UserLogin() {
     axios
       .post("http://localhost:4000/users/login", formData)
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
+        toast.success("Login successful");
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         // window.location.href = "/user-dashboard";
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error("Invalid user email or password");
       });
   };
   return (
