@@ -49,7 +49,7 @@ function UserSignup() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form onSubmit={handleSubmit} className="p-6 bg-white rounded shadow-md">
         <img src="../img/logo.png" alt="" />
-        <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">User SignUp</h2>
 
         <div className="mb-4">
           <label className="block text-gray-700">First Name</label>
