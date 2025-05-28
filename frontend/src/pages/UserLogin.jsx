@@ -23,7 +23,7 @@ function UserLogin() {
     axios
       .post("http://localhost:4000/users/login", formData)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         // window.location.href = "/user-dashboard";

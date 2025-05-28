@@ -38,7 +38,7 @@ function UserSignup() {
       .post("http://localhost:4000/users/register", formData)
       .then((res) => {
         navigate("/user-login");
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err.message);
