@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { UserDataContext } from "../context/UserContext";
 function UserSignup() {
-  // Importing necessary libraries and hooks
-  // Importing useState for state management, Link for navigation, axios for HTTP requests, useNavigate for programmatic navigation, and toast for notifications
+  const { user, setUser } = useContext(UserDataContext);
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: {
@@ -43,8 +44,9 @@ function UserSignup() {
     axios
       .post("http://localhost:4000/users/register", formData)
       .then((res) => {
+        setUser(res.data.user);
+        // console.log(res.data);
         navigate("/user-login");
-        console.log(res.data);
         toast.success("Registration successful! Please login.");
       })
       .catch(() => {

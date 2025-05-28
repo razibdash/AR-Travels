@@ -1,21 +1,23 @@
-import { createContext, useEffect, useState } from "react";
-function UserContext({ children }) {
-  const userDataContext = createContext();
+import React, { createContext, useState } from "react";
 
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    // You can set initial user data here if needed
-    setUser({
-      fullname: {
-        firstName: "",
-        lastName: "",
-      },
-      email: "",
-    });
-  }, []);
+export const UserDataContext = createContext();
+
+const UserContext = ({ children }) => {
+  const [user, setUser] = useState({
+    email: "",
+    fullName: {
+      firstName: "",
+      lastName: "",
+    },
+  });
+  console.log("UserContext initialized with user:", user);
   return (
-    <userDataContext.Provider value={user}>{children}</userDataContext.Provider>
+    <div>
+      <UserDataContext.Provider value={{ user, setUser }}>
+        {children}
+      </UserDataContext.Provider>
+    </div>
   );
-}
+};
 
 export default UserContext;

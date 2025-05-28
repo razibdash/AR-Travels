@@ -1,34 +1,31 @@
-import React, { createContext, useState, useContext } from "react";
+import { createContext, useState } from "react";
 
-// Create Captain Context
-const CaptainDataContext = createContext();
+export const CaptainDataContext = createContext();
 
-// Captain Provider Component
-export const CaptainContext = ({ children }) => {
+const CaptainContext = ({ children }) => {
   const [captain, setCaptain] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Function to update captain data
   const updateCaptain = (captainData) => {
     setCaptain(captainData);
   };
 
-  // Function to clear captain data (e.g., on logout)
-  const clearCaptain = () => {
-    setCaptain(null);
+  const value = {
+    captain,
+    setCaptain,
+    isLoading,
+    setIsLoading,
+    error,
+    setError,
+    updateCaptain,
   };
 
   return (
-    <CaptainContext.Provider value={{ captain, updateCaptain, clearCaptain }}>
+    <CaptainDataContext.Provider value={value}>
       {children}
-    </CaptainContext.Provider>
+    </CaptainDataContext.Provider>
   );
 };
 
-// Custom Hook to use Captain Context
-export const useCaptain = () => {
-  const context = useContext(CaptainContext);
-  if (!context) {
-    throw new Error("useCaptain must be used within a CaptainProvider");
-  }
-  return context;
-};
+export default CaptainContext;
