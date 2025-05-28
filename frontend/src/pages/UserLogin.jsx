@@ -76,7 +76,7 @@ function UserLogin() {
             type="submit"
             className="w-full px-4 py-2 font-bold text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-200"
           >
-            Login
+            User Login
           </button>
           <div className="py-5 flex justify-center items-center">
             <p className="text-stone-800">haven't account ?</p>{" "}
