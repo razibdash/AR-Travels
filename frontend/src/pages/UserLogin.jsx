@@ -82,7 +82,7 @@ function UserLogin() {
             Login
           </button>
           <div className="py-5 flex justify-center items-center">
-            <p className="text-stone-800">haven't account ?</p>{" "}
+            <p className="text-stone-800">Don&apos;t have an account?</p>{" "}
             <Link className="text-sky-600 ml-1" to={"/user-signup"}>
               Signup now
             </Link>

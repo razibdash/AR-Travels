@@ -38,13 +38,9 @@ function UserSignup() {
     axios
       .post("http://localhost:4000/users/register", formData)
       .then((res) => {
-        navigate("/user-login");
-        console.log(res.data);
-        toast.success("Registration successful! Please login.");
-      })
-      .catch((err) => {
-        toast.error("Oops! Something went wrong. Please try again.");
-      });
+navigate("/user-login");
+console.log(res.data);
+toast.success("Registration successful! Please login.");
   };
 
   return (
