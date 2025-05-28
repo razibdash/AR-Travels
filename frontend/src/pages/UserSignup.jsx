@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {  toast } from 'react-toastify';
 function UserSignup() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -39,9 +40,10 @@ function UserSignup() {
       .then((res) => {
         navigate("/user-login");
         console.log(res.data);
+        toast.success("Registration successful! Please login.");
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error("Oops! Something went wrong. Please try again.");
       });
   };
 
