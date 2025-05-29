@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { CaptainDataContext } from "../context/CaptainContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function CaptainSignup() {
+  const { captain, setCaptain } = useContext(CaptainDataContext);
   const [formData, setFormData] = useState({
     fullname: {
       firstname: "",
@@ -29,9 +33,20 @@ function CaptainSignup() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    axios
+      .post("http://localhost:4000/captains/register", formData)
+      .then((response) => {
+        setCaptain(response.data);
+        console.log("Captain registered successfully:", response.data);
+        toast.success("Captain registered successfully!");
+        // Optionally, you can redirect or show a success message
+      })
+      .catch((error) => {
+        toast.error("Error registering captain.");
+      });
+
     // Here you would typically send the form data to your backend
   };
   return (

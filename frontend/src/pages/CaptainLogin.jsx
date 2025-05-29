@@ -5,6 +5,7 @@ function CaptainLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [captainData, setcaptainData] = useState();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
