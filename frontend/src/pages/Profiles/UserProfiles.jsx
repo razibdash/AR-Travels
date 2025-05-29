@@ -2,17 +2,23 @@ import React, { useRef, useState } from "react";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { FaChevronDown } from "react-icons/fa";
+import LocationSearchPanel from "../../components/LocationSearchPanel";
+import VehiclePanel from "../../components/VehiclePanel";
 
 const UserProfiles = () => {
-  const [panelOpen, setPenelOpen] = useState(false)
+  const [panelOpen, setPenelOpen] = useState(false);
+  const [vehiclePanel, setVehiclePanel] = useState(false)
   const panelRef = useRef(null);
   const panelCloseRef = useRef(null);
+  const vehiclePanelRef = useRef(null);
 
   const handleSubmit = (e) =>{
     e.preventDefault();
     const pickup = e.target.pickup.value;
     const destination = e.target.destination.value
   }
+
+ 
 
   useGSAP(() => {
 	if(panelOpen){
@@ -33,8 +39,21 @@ const UserProfiles = () => {
   }
 },[panelOpen]);
 
-  return <div className="h-screen relative">
-     <img className="w-40" src="../img/logo.png" alt="" />
+ useGSAP(() => {
+	if(vehiclePanel){
+    gsap.to(vehiclePanelRef.current,{
+    transform: 'translateY(0)'
+  })
+  }
+  else{
+    gsap.to(vehiclePanelRef.current,{
+    transform: 'translateY(100%)'
+  })
+  }
+},[vehiclePanel]);
+
+  return <div className="h-screen relative overflow-hidden">
+     <img className="absolute  w-40" src="../img/logo.png" alt="" />
      <div className="w-screen h-screen">
       <img src="/img/map.png" alt="" className="w-full h-full object-cover"/>
      </div>
@@ -57,11 +76,15 @@ const UserProfiles = () => {
         placeholder="Enter your destination"/>
       </form>
       </div>
-      <div ref={panelRef} className="h-0 bg-white">
-
+      <div ref={panelRef} className="h-0 bg-white px-20 py-4">
+         <LocationSearchPanel setPenelOpen={setPenelOpen} setVehiclePanel={setVehiclePanel}/>
       </div>
      </div>
-  </div>;
+
+     <div className="fixed z-10 bottom-0 p-5 md:px-20 bg-white w-full py-8 " ref={vehiclePanelRef}>
+     <VehiclePanel setVehiclePanel={setVehiclePanel}/>
+  </div>
+  </div>
 };
 
 export default UserProfiles;
