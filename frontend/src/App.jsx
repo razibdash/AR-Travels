@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import UserProtectedWrapper from "./components/ProtectedWrapper/UserProtectedWrapper";
 import UserProfiles from "./pages/Profiles/UserProfiles";
 import UserLogout from "./components/auth/UserLogout";
+import ConfirmedRide from "./components/ConfirmedRide";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             </UserProtectedWrapper>
           }
         />
+      
       </Routes>
     </>
   );

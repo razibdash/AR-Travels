@@ -4,13 +4,16 @@ import { useGSAP } from '@gsap/react';
 import { FaChevronDown } from "react-icons/fa";
 import LocationSearchPanel from "../../components/LocationSearchPanel";
 import VehiclePanel from "../../components/VehiclePanel";
+import ConfirmedRide from "../../components/ConfirmedRide";
 
 const UserProfiles = () => {
   const [panelOpen, setPenelOpen] = useState(false);
   const [vehiclePanel, setVehiclePanel] = useState(false)
+  const [confirmRidePanel, setConfirmRidePanel] = useState(false)
   const panelRef = useRef(null);
   const panelCloseRef = useRef(null);
   const vehiclePanelRef = useRef(null);
+  const confirmedRideRef = useRef(null);
 
   const handleSubmit = (e) =>{
     e.preventDefault();
@@ -52,6 +55,20 @@ const UserProfiles = () => {
   }
 },[vehiclePanel]);
 
+useGSAP(() => {
+	if(confirmRidePanel){
+    gsap.to(confirmedRideRef.current,{
+    transform: 'translateY(0)'
+  })
+  }
+  else{
+    gsap.to(confirmedRideRef.current,{
+    transform: 'translateY(100%)'
+  })
+  }
+},[confirmRidePanel]);
+
+
   return <div className="h-screen relative overflow-hidden">
      <img className="absolute  w-40" src="../img/logo.png" alt="" />
      <div className="w-screen h-screen">
@@ -82,7 +99,11 @@ const UserProfiles = () => {
      </div>
 
      <div className="fixed z-10 bottom-0 p-5 md:px-20 bg-white w-full py-8 " ref={vehiclePanelRef}>
-     <VehiclePanel setVehiclePanel={setVehiclePanel}/>
+     <VehiclePanel setVehiclePanel={setVehiclePanel} setConfirmRidePanel={setConfirmRidePanel} />
+  </div>
+
+  <div className="fixed z-10 bottom-0 p-5 md:px-20 bg-white w-full py-8  " ref={confirmedRideRef}>
+     <ConfirmedRide setConfirmRidePanel={setConfirmRidePanel}/>
   </div>
   </div>
 };

@@ -2,7 +2,7 @@ import React from 'react'
 import { FaChevronDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 
-function VehiclePanel({setVehiclePanel}) {
+function VehiclePanel({setVehiclePanel,setConfirmRidePanel}) {
      // sample data
   const vehicles = [
     {
@@ -32,7 +32,10 @@ function VehiclePanel({setVehiclePanel}) {
               <h3 className="text-center text-3xl font-semibold mb-4">Choose a Vehicle</h3>
              {
               vehicles.map((vehicle)=>(
-                 <div key={vehicle.id} className="flex items-center justify-between border-2 border-gray-200 active:border-black p-3 md:p-5 w-full rounded-2xl mt-4 cursor-pointer">
+                 <div key={vehicle.id} 
+                 className="flex items-center justify-between border-2 border-gray-200 active:border-black p-3 md:p-5 w-full rounded-2xl mt-4 cursor-pointer"
+                 onClick={()=>setConfirmRidePanel(true)}
+                 >
                 <img src={vehicle.img} alt="" className="w-10 md:w-20"/>
               <div>
               <h4 className="flex sm:text-xl font-medium items-center">{vehicle.name} <span className="ml-2 mr-1"><FaUser/></span>{vehicle.user}</h4>
