@@ -7,7 +7,7 @@ function Home() {
         <div className="w-40">
           <img src="../img/logo.png" alt="" />
         </div>
-        <div className="bg-stone-50 py-5 px-10 sm:w-1/2 w-full mx-auto">
+        <div className="bg-stone-50 py-5 px-10 sm:w-1/2 w-full mx-auto pb-8">
           <h1 className="font-bold text-stone-700 p-1 text-2xl">
             Get start With AR Travels.
           </h1>

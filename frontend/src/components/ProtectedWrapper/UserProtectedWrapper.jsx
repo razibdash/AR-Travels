@@ -33,7 +33,7 @@ const UserProtectedWrapper = ({ children }) => {
         localStorage.removeItem("token");
         navigate("/user-login");
       });
-  }, [navigate, setUser, token]);
+  }, [token]);
 
 if(isLoading){
   return <div>...Loading</div>
