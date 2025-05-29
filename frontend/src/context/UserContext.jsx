@@ -10,7 +10,6 @@ const UserContext = ({ children }) => {
       lastName: "",
     },
   });
-  console.log("UserContext initialized with user:", user);
   return (
     <div>
       <UserDataContext.Provider value={{ user, setUser }}>

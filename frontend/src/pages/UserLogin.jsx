@@ -21,11 +21,9 @@ function UserLogin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
-    console.log(formData);
     axios
       .post("http://localhost:4000/users/login", formData)
       .then((res) => {
-        console.log(res.data);
         toast.success("Login successful");
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));

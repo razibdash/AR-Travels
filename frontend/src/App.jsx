@@ -8,6 +8,7 @@ import CaptainSignup from "./pages/CaptainSignup";
 import { ToastContainer } from "react-toastify";
 import UserProtectedWrapper from "./components/ProtectedWrapper/UserProtectedWrapper";
 import UserProfiles from "./pages/Profiles/UserProfiles";
+import UserLogout from "./components/auth/UserLogout";
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
           element={
             <UserProtectedWrapper>
               <UserProfiles />
+            </UserProtectedWrapper>
+          }
+        />
+        <Route
+          path="/user-logout"
+          element={
+            <UserProtectedWrapper>
+              <UserLogout />
             </UserProtectedWrapper>
           }
         />
