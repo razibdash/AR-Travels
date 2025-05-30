@@ -5,15 +5,18 @@ import { FaChevronDown } from "react-icons/fa";
 import LocationSearchPanel from "../../components/LocationSearchPanel";
 import VehiclePanel from "../../components/VehiclePanel";
 import ConfirmedRide from "../../components/ConfirmedRide";
+import LookingForDriver from "../../components/LookingForDriver";
 
 const UserProfiles = () => {
   const [panelOpen, setPenelOpen] = useState(false);
   const [vehiclePanel, setVehiclePanel] = useState(false)
   const [confirmRidePanel, setConfirmRidePanel] = useState(false)
+  const [vehicleFound, setVehicleFound] = useState(false)
   const panelRef = useRef(null);
   const panelCloseRef = useRef(null);
   const vehiclePanelRef = useRef(null);
   const confirmedRideRef = useRef(null);
+  const vehicleFoundRef = useRef(null);
 
   const handleSubmit = (e) =>{
     e.preventDefault();
@@ -68,6 +71,19 @@ useGSAP(() => {
   }
 },[confirmRidePanel]);
 
+useGSAP(() => {
+	if(vehicleFound){
+    gsap.to(vehicleFoundRef.current,{
+    transform: 'translateY(0)'
+  })
+  }
+  else{
+    gsap.to(vehicleFoundRef.current,{
+    transform: 'translateY(100%)'
+  })
+  }
+},[vehicleFound]);
+
 
   return <div className="h-screen relative overflow-hidden">
      <img className="absolute  w-40" src="../img/logo.png" alt="" />
@@ -93,7 +109,7 @@ useGSAP(() => {
         placeholder="Enter your destination"/>
       </form>
       </div>
-      <div ref={panelRef} className="h-0 bg-white px-20 py-4">
+      <div ref={panelRef} className="h-0 bg-white sm:px-20 px-4 py-4 ">
          <LocationSearchPanel setPenelOpen={setPenelOpen} setVehiclePanel={setVehiclePanel}/>
       </div>
      </div>
@@ -103,7 +119,10 @@ useGSAP(() => {
   </div>
 
   <div className="fixed z-10 bottom-0 p-5 md:px-20 bg-white w-full py-8  " ref={confirmedRideRef}>
-     <ConfirmedRide setConfirmRidePanel={setConfirmRidePanel}/>
+     <ConfirmedRide setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound}/>
+  </div>
+  <div className="fixed z-10 bottom-0 p-5 md:px-20 bg-white w-full py-8  " ref={vehicleFoundRef}>
+     <LookingForDriver setVehicleFound={setVehicleFound}/>
   </div>
   </div>
 };

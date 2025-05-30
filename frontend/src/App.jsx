@@ -10,6 +10,7 @@ import UserProtectedWrapper from "./components/ProtectedWrapper/UserProtectedWra
 import UserProfiles from "./pages/Profiles/UserProfiles";
 import UserLogout from "./components/auth/UserLogout";
 import ConfirmedRide from "./components/ConfirmedRide";
+import Riding from "./components/Riding";
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
           element={
             <UserProtectedWrapper>
               <UserLogout />
+            </UserProtectedWrapper>
+          }
+        />
+        <Route
+          path="/riding"
+          element={
+            <UserProtectedWrapper>
+              <Riding />
             </UserProtectedWrapper>
           }
         />

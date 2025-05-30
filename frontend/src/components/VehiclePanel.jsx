@@ -33,7 +33,7 @@ function VehiclePanel({setVehiclePanel,setConfirmRidePanel}) {
              {
               vehicles.map((vehicle)=>(
                  <div key={vehicle.id} 
-                 className="flex items-center justify-between border-2 border-gray-200 active:border-black p-3 md:p-5 w-full rounded-2xl mt-4 cursor-pointer"
+                 className="flex items-center gap-4 justify-between border-2 border-gray-200 active:border-black p-3 md:p-5 w-full rounded-2xl mt-4 cursor-pointer"
                  onClick={()=>setConfirmRidePanel(true)}
                  >
                 <img src={vehicle.img} alt="" className="w-10 md:w-20"/>
@@ -42,7 +42,7 @@ function VehiclePanel({setVehiclePanel,setConfirmRidePanel}) {
               <h5 className="text-gray-500 font-medium">{vehicle.time} mins away</h5>
               <p className="text-gray-600">{vehicle.description}</p>
              </div>
-             <h2 className="font-medium text-xl">${vehicle.price}</h2>
+             <h2 className="font-medium sm:text-xl">${vehicle.price}</h2>
              </div>
               ))
              }

@@ -21,10 +21,10 @@ function LocationSearchPanel({setPenelOpen,setVehiclePanel}) {
          },
     ]
   return (
-    <div>
+    <div >
        {
         locations.map((location)=>(
-             <div key={location.id} className='flex items-center justify-start gap-2 mb-3 p-4 rounded-xl border border-gray-200 active:border-gray-700 cursor-pointer'
+             <div key={location.id} className='flex items-center justify-start w-full gap-2 mb-3 p-4 rounded-xl border border-gray-200 active:border-gray-700 cursor-pointer'
              onClick={()=>{
                 setVehiclePanel(true)  
                 setPenelOpen(false)
@@ -32,7 +32,7 @@ function LocationSearchPanel({setPenelOpen,setVehiclePanel}) {
             
              >
             <div className='bg-gray-200 p-2 rounded-full'><FaLocationDot/></div>
-            <h4>{location.location}</h4>
+            <h4 className='text-sm sm:text-base'>{location.location}</h4>
         </div>
         ))
        }
