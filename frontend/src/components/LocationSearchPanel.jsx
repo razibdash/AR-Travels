@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaLocationDot } from "react-icons/fa6";
+import { UserDataContext } from '../context/UserContext';
 
 function LocationSearchPanel({setPenelOpen,setVehiclePanel}) {
+   const {location,setLocation} = useContext(UserDataContext)
  const locations = [
          {
             id:1,
@@ -28,6 +30,7 @@ function LocationSearchPanel({setPenelOpen,setVehiclePanel}) {
              onClick={()=>{
                 setVehiclePanel(true)  
                 setPenelOpen(false)
+                setLocation(location)
              }}
             
              >

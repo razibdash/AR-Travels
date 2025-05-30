@@ -10,9 +10,20 @@ const UserContext = ({ children }) => {
       lastName: "",
     },
   });
+  const [location,setLocation] = useState([]);
+  const [vehicle,setVehicle] = useState([])
+
+  const value = {
+    user,
+    setUser,
+    location,
+    setLocation,
+    vehicle,
+    setVehicle
+  }
   return (
     <div>
-      <UserDataContext.Provider value={{ user, setUser }}>
+      <UserDataContext.Provider value={value}>
         {children}
       </UserDataContext.Provider>
     </div>

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaChevronDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import { UserDataContext } from '../context/UserContext';
 
 function VehiclePanel({setVehiclePanel,setConfirmRidePanel}) {
+  const {vehicle,setVehicle}= useContext(UserDataContext)
      // sample data
   const vehicles = [
     {
@@ -34,7 +36,11 @@ function VehiclePanel({setVehiclePanel,setConfirmRidePanel}) {
               vehicles.map((vehicle)=>(
                  <div key={vehicle.id} 
                  className="flex items-center gap-4 justify-between border-2 border-gray-200 active:border-black p-3 md:p-5 w-full rounded-2xl mt-4 cursor-pointer"
-                 onClick={()=>setConfirmRidePanel(true)}
+                 onClick={()=>{
+                  setConfirmRidePanel(true)
+                  setVehicle(vehicle)
+                
+                }}
                  >
                 <img src={vehicle.img} alt="" className="w-10 md:w-20"/>
               <div>

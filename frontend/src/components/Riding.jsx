@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 import { UserDataContext } from '../context/UserContext';
 
 function Riding() {
-   const {user} = useContext(UserDataContext)
+  const {user,location,vehicle} = useContext(UserDataContext)
+   
   return (
     <div  className="h-screen relative overflow-hidden pb-18 ">
         <Link to='/user-profile' className='absolute right-10 top-5 bg-gray-600 text-white p-4 rounded-full cursor-pointer'>
@@ -20,7 +21,7 @@ function Riding() {
      </div>
      <div className='h-1/2 p-8'>
       <div className='flex flex-col sm:flex-row justify-between items-center'>
-         <img src="/img/car1.png" alt="" className="w-15 md:w-20 "/>
+         <img src={vehicle.img} alt="" className="w-15 md:w-20 "/>
          <div>
             <h4 className='text-base'>Sourav</h4>
             <h3 className='text-lg font-medium'>MP04 AB 1234</h3>
@@ -33,11 +34,14 @@ function Riding() {
                     </div>
                     <div className='flex items-center gap-3 p-5 border-b border-gray-200'>
                          <FaLocationDot/>
-                         <h4>Metropolitan University,Bateshwar, Sylhet-3104, Bangladesh</h4>
+                        {
+                           location &&
+                            <h4>{location.location}</h4>
+                        }
                     </div>
                    <div className='flex items-center gap-3  p-5 '>
                           <HiCash className='text-xl'/>
-                          <h4>$93.20</h4>
+                          <h4>{vehicle.price}</h4>
         
                    </div>
                   <button  

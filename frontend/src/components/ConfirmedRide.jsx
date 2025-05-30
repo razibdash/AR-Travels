@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { UserDataContext } from '../context/UserContext';
 
 function ConfirmedRide({setConfirmRidePanel,setVehicleFound}) {
-  const {user} = useContext(UserDataContext)
+  const {user,location,vehicle} = useContext(UserDataContext)
  
   return (
     <div>
@@ -17,7 +17,7 @@ function ConfirmedRide({setConfirmRidePanel,setVehicleFound}) {
                <FaChevronDown />
         </div>
              <h3 className="text-center text-3xl font-semibold mb-4">Confirm Your Ride</h3>
-            <img src="/img/car1.png" alt="" className="w-10 md:w-50 mx-auto"/>
+            <img src={vehicle.img} alt="" className="w-10 md:w-50 mx-auto"/>
             <div>
             <div className='flex items-center gap-3 p-5 border-b border-gray-200'>
                 <FaUser/>
@@ -25,11 +25,11 @@ function ConfirmedRide({setConfirmRidePanel,setVehicleFound}) {
             </div>
             <div className='flex items-center gap-3 p-5 border-b border-gray-200'>
                  <FaLocationDot/>
-                 <h4>Metropolitan University,Bateshwar, Sylhet-3104, Bangladesh</h4>
+                 <h4>{location.location}</h4>
             </div>
            <div className='flex items-center gap-3  p-5 '>
                   <HiCash className='text-xl'/>
-                  <h4>$93.20</h4>
+                  <h4>${vehicle.price}</h4>
 
            </div>
           <Link to="/riding">
