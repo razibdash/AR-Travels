@@ -41,7 +41,7 @@ function Riding() {
                     </div>
                    <div className='flex items-center gap-3  p-5 '>
                           <HiCash className='text-xl'/>
-                          <h4>{vehicle.price}</h4>
+                          <h4>${vehicle.price}</h4>
         
                    </div>
                   <button  

@@ -5,7 +5,6 @@ import { FaChevronDown } from "react-icons/fa";
 import LocationSearchPanel from "../../components/LocationSearchPanel";
 import VehiclePanel from "../../components/VehiclePanel";
 import ConfirmedRide from "../../components/ConfirmedRide";
-import LookingForDriver from "../../components/LookingForDriver";
 
 const UserProfiles = () => {
   const [panelOpen, setPenelOpen] = useState(false);
@@ -121,9 +120,7 @@ useGSAP(() => {
   <div className="fixed z-10 bottom-0 p-5 md:px-20 bg-white w-full py-8  " ref={confirmedRideRef}>
      <ConfirmedRide setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound}/>
   </div>
-  <div className="fixed z-10 bottom-0 p-5 md:px-20 bg-white w-full py-8  " ref={vehicleFoundRef}>
-     <LookingForDriver setVehicleFound={setVehicleFound}/>
-  </div>
+  
   </div>
 };
 
