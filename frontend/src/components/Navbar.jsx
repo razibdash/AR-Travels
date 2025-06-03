@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
-    <div className='w-full '>
-        <div className="navbar bg-base-100 shadow-sm sm:px-12 px-3">
+    <div className='w-full'>
+        <div className="navbar bg-white shadow-sm sm:px-12 px-3">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -18,24 +18,24 @@ function Navbar() {
         <li><a>Contact</a></li>
       </ul>
     </div>
-   <div className="w-50 ">
+   <div className="w-40 ">
           <img src="../img/logo.png" alt="" />
         </div>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1 text-lg font-semibold">
-        <li><a>Home</a></li>
-        <li><a>About</a></li>
-        <li><a>Contact</a></li>
+    <ul className="menu menu-horizontal px-1 text-base font-semibold">
+        <li><a className='hover:text-yellow-500 duration-200'>Home</a></li>
+        <li><a className='hover:text-yellow-500 duration-200'>About</a></li>
+        <li><a className='hover:text-yellow-500 duration-200'>Contact</a></li>
     </ul>
   </div>
   <div className="navbar-end ">
-    <Link to='/user-login'><button className="btn sm:bg-blue-500 sm:text-white text-blue-500 border-none hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500 duration-200 cursor-pointer ">
+    <Link to='/user-login'><button className="btn sm:bg-blue-500 sm:text-white text-blue-500   sm:border sm:border-blue-500 hover:bg-white hover:text-blue-500  duration-200 cursor-pointer ">
         Login
     </button></Link>
+    </div>
   </div>
 </div>
-    </div>
   )
 }
 
