@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Banner from "../components/Banner";
 import HowItWorks from "../components/HowItWorks";
+import WhyChoose from "../components/WhyChoose";
 
 function Home() {
   return (
@@ -9,6 +10,7 @@ function Home() {
       <Navbar/>
        <Banner/>
        <HowItWorks/>
+       <WhyChoose/>
     </div>
   );
 }
