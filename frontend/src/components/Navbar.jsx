@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { UserDataContext } from '../context/UserContext';
 
 function Navbar() {
+  const {user} = useContext(UserDataContext);
+  console.log(user)
   return (
     <div className='w-full'>
         <div className="navbar bg-white shadow-sm sm:px-12 px-3">
@@ -30,9 +33,19 @@ function Navbar() {
     </ul>
   </div>
   <div className="navbar-end ">
-    <Link to='/user-login'><button className="btn sm:bg-blue-500 sm:text-white text-blue-500   sm:border sm:border-blue-500 hover:bg-white hover:text-blue-500  duration-200 cursor-pointer ">
+   {
+    !user ?
+     <Link to='/user-login'><button className="btn sm:bg-blue-500 sm:text-white text-blue-500   sm:border sm:border-blue-500 hover:bg-white hover:text-blue-500  duration-200 cursor-pointer ">
         Login
     </button></Link>
+
+    :
+
+    
+      <button className="btn sm:bg-blue-500 sm:text-white text-blue-500   sm:border sm:border-blue-500 hover:bg-white hover:text-blue-500  duration-200 cursor-pointer ">
+        Logout
+      </button>
+   }
     </div>
   </div>
 </div>

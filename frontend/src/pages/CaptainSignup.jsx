@@ -52,7 +52,7 @@ function CaptainSignup() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form onSubmit={handleSubmit} className="p-6 bg-white rounded shadow-md">
-        <img src="../img/logo.png" alt="" />
+        <Link to="/"><img src="../img/logo.png" alt="" /></Link>
         <h2 className="text-2xl font-bold mb-4 text-center">
           Captain Register
         </h2>

@@ -5,6 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 import LocationSearchPanel from "../../components/LocationSearchPanel";
 import VehiclePanel from "../../components/VehiclePanel";
 import ConfirmedRide from "../../components/ConfirmedRide";
+import { Link } from 'react-router-dom';
 
 const UserProfiles = () => {
   const [panelOpen, setPenelOpen] = useState(false);
@@ -85,7 +86,7 @@ useGSAP(() => {
 
 
   return <div className="h-screen relative overflow-hidden">
-     <img className="absolute  w-40" src="../img/logo.png" alt="" />
+     <Link to='/'> <img className="absolute z-10 w-40 mb-5" src="../img/logo.png" alt="" /></Link>
      <div className="w-screen h-screen">
       <img src="/img/map.png" alt="" className="w-full h-full object-cover"/>
      </div>
@@ -94,7 +95,7 @@ useGSAP(() => {
         <div ref={panelCloseRef} className="flex justify-end" onClick={()=>setPenelOpen(false)}>
           <FaChevronDown  />
         </div>
-        <h3 className="text-2xl font-semibold mb-4">Find a Trip</h3>
+        <h3 className="text-2xl font-semibold my-5">Find a Trip</h3>
       <form onSubmit={handleSubmit}>
 
         <input type="text" name="pickup" 

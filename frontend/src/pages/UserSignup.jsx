@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { UserDataContext } from "../context/UserContext";
 function UserSignup() {
   const { user, setUser } = useContext(UserDataContext);
-
+  
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullname: {
@@ -46,7 +46,7 @@ function UserSignup() {
       .then((res) => {
         setUser(res.data.user);
         // console.log(res.data);
-        navigate("/user-login");
+        navigate("/");
         toast.success("Registration successful! Please login.");
       })
       .catch(() => {
@@ -58,7 +58,7 @@ function UserSignup() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form onSubmit={handleSubmit} className="p-6 bg-white rounded shadow-md">
-        <img src="../img/logo.png" alt="" />
+        <Link to="/"><img src="../img/logo.png" alt="" /></Link>
         <h2 className="text-2xl font-bold mb-4 text-center">User SignUp</h2>
 
         <div className="mb-4">

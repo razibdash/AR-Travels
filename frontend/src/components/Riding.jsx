@@ -14,7 +14,7 @@ function Riding() {
         <Link to='/user-profile' className='absolute right-10 top-5 bg-gray-600 text-white p-4 rounded-full cursor-pointer'>
           <FaHome />
         </Link>
-            <img className="absolute  w-40" src="../img/logo.png" alt="" />
+           <Link to='/'> <img className="absolute  w-40" src="../img/logo.png" alt="" /></Link>
          
 <div className="w-screen h-1/2  ">
       <img src="/img/map.png" alt="" className="w-full h-full object-cover"/>
