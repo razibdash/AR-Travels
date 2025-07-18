@@ -2,37 +2,38 @@ const { hashedPwd, checkPwd } = require('../db/utilits');
 const {createCaptain} = require('../services/captain.service.js');  
 const captainModel = require('../models/captain.model');
 const blacklistTokenSchema=require('../models/blacklistToken.model');
+const e = require('express');
+
 //register captain controller 
 const registerCaptain = async (req, res) => {  
     try {
         const { fullname, email, password,vehicle } = req.body;
+        
         const isCaptainAlreadyExist = await captainModel.findOne({email});
         if (isCaptainAlreadyExist) {
-              res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message: 'Captain already exists',
             });
         }
         const hashedPassword = await hashedPwd(password);
-        const captain = await createCaptain(
-            {
-                firstname:fullname.firstname,
-                lastname:fullname.lastname,
-                email,
-                password:hashedPassword,
-                color:vehicle.color,
-                plate:vehicle.plate,    
-                capacity:vehicle.capacity,
-                vehicleType:vehicle.vehicleType
-            }
-        );
-        res.status(201).json({
-            sucess:true,
-            message:'Captain created successfully',
+        const captain = await createCaptain({
+            firstname: fullname.firstname,
+            lastname: fullname.lastname,
+            email,
+            password: hashedPassword,
+            color:vehicle.color,
+            plate:vehicle.plate,    
+            capacity:vehicle.capacity,
+            vehicleType:vehicle.vehicleType
+        });
+        return res.status(201).json({
+            success: true,
+            message: 'Captain created successfully',
             captain,
         });
     } catch (error) {
-        res.status(500).json({ message: error.message+"error controller" });
+        return res.status(500).json({ message: error.message + " error controller" });
     }
 }
 
@@ -97,4 +98,4 @@ const logoutCaptain = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
-module.exports = { registerCaptain ,loginCaptain,profileCaptain,logoutCaptain}; 
+module.exports = { registerCaptain ,loginCaptain,profileCaptain,logoutCaptain};
