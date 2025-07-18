@@ -9,6 +9,7 @@ function CaptainLogin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
+
     setcaptainData({
       email,
       password,
